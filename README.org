@@ -7,7 +7,7 @@ This flake packages the [[https://github.com/techyCoder81/hdr-launcher-react][HD
 
 #+begin_src nix
 {
-  inputs.hdr-launcher.url = "github:Quasarx64/hdr-launcher-flake";
+  inputs.hdr-launcher.url = "github:Quasarx64/hdr-launcher-nix";
 
   outputs = { nixpkgs, hdr-launcher, ... }: {
     nixosConfigurations.yourhost = nixpkgs.lib.nixosSystem {
