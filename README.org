@@ -1,0 +1,62 @@
+#+title: HDR Launcher for NixOS
+
+This flake packages the [[https://github.com/techyCoder81/hdr-launcher-react][HDR Launcher]], an Electron app for managing [[https://github.com/HDR-Development][HewDraw Remix]] installations for Nintendo Switch Emulators.
+
+* Installation
+** NixOS Configuration
+
+#+begin_src nix
+{
+  inputs.hdr-launcher.url = "github:Quasarx64/hdr-launcher-flake";
+
+  outputs = { nixpkgs, hdr-launcher, ... }: {
+    nixosConfigurations.yourhost = nixpkgs.lib.nixosSystem {
+      modules = [{
+        environment.systemPackages = [
+          hdr-launcher.packages.x86_64-linux.default
+        ];
+      }];
+    };
+  };
+}
+#+end_src
+
+** Home Manager
+In =flake.nix=:
+
+#+begin_src nix
+inputs = {
+  hdr-launcher = {
+      url = "github:Quasarx64/hdr-launcher-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+};
+
+# ...
+
+homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = {
+        inherit inputs user hdr-launcher; # Add hdr-launcher here.
+      };
+#+end_src
+
+In =home.nix=:
+
+#+begin_src nix
+{ inputs, pkgs, ... }:
+{
+  home.packages = [
+    inputs.hdr-launcher.packages.${pkgs.system}.default
+  ];
+}
+#+end_src
+
+
+* Usage
+
+The launcher should be accessible from your desktop menu or the terminal with
+
+#+begin_src sh
+hdr-launcher
+#+end_src
