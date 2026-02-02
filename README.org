@@ -47,7 +47,7 @@ In =home.nix=:
 { inputs, pkgs, ... }:
 {
   home.packages = [
-    inputs.hdr-launcher.packages.${pkgs.system}.default
+    inputs.hdr-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
 #+end_src
