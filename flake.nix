@@ -59,20 +59,5 @@
           };
         };
       };
-
-      # Development shell
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          nodejs_20
-          yarn
-          python3
-          electron_40
-        ];
-
-        shellHook = ''
-          export ELECTRON_SKIP_BINARY_DOWNLOAD=1
-          echo "HDR Launcher dev shell - run 'yarn install && yarn start'"
-        '';
-      };
     };
 }
