@@ -11,7 +11,7 @@
       pkgs = import nixpkgs { inherit system; };
       
       pname = "hdr-launcher";
-      version = "0.7.5";
+      version = "0.8.0";
 
     in {
       packages.${system} = {
@@ -22,7 +22,7 @@
 
           src = pkgs.fetchurl {
             url = "https://github.com/techyCoder81/hdr-launcher-react/releases/download/v${version}/HDRLauncher-${version}.AppImage";
-            sha256 = "sha256-ZXp/7U/XkK8ZPRfGXTJ0VvBRe9EGlZNNGTB71kJEjw0=";
+            sha256 = "sha256-ZUF650bTSnh7UAIO0KfAV/i5NYE4/WzfQZQax8heeqE=";
           };
 
           extraPkgs = pkgs: with pkgs; [
@@ -66,7 +66,7 @@
           nodejs_20
           yarn
           python3
-          electron_28
+          electron_40
         ];
 
         shellHook = ''
